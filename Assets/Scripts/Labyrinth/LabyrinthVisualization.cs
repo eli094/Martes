@@ -20,17 +20,22 @@ public class LabyrinthVisualization : MonoBehaviour
         labyrinth.CreateMaze();
 
         grafo = new GrafoLabyrinth(labyrinth.map);
-
         ShowLabyrinth();
 
-        nodeEntrance = grafo.nodes[0, 0];
-        nodeExit = grafo.nodes[labyrinth.rows - 1, labyrinth.columns - 1];
+        List<Node> nodes = grafo.GetNodes();
 
-        List<Node> path = Search.FindPath(nodeEntrance, nodeExit);
+        nodeEntrance = nodes.Find(n => n.x == 0 && n.y == 0);
+        nodeExit = nodes.Find(n => n.x == labyrinth.rows - 1 && n.y == labyrinth.columns - 1);
+
+        List<Node> path = Search.FindPath(nodeEntrance, nodeExit, grafo);
 
         if (path != null)
         {
             ShowPath(path);
+        }
+        else
+        {
+            Debug.Log("A path wasn't found.");
         }
     }
 
@@ -40,16 +45,22 @@ public class LabyrinthVisualization : MonoBehaviour
         {
             for (int j = 0; j < labyrinth.columns; j++)
             {
+                Vector3 position = new Vector3(j, -i, 0);
+
                 if (labyrinth.map[i, j] == 1)
                 {
-                    Instantiate(prefabWall, new Vector3(j, -i, 0), Quaternion.identity);
+                    Instantiate(prefabWall, position, Quaternion.identity);
                 }
                 else
                 {
                     if (i == 0 && j == 0)
-                        Instantiate(prefabEntrance, new Vector3(j, -i, 0), Quaternion.identity);
+                    {
+                        Instantiate(prefabEntrance, position, Quaternion.identity);
+                    }
                     else if (i == labyrinth.rows - 1 && j == labyrinth.columns - 1)
-                        Instantiate(prefabExit, new Vector3(j, -i, 0), Quaternion.identity);
+                    {
+                        Instantiate(prefabExit, position, Quaternion.identity);
+                    }
                 }
             }
         }
@@ -63,4 +74,7 @@ public class LabyrinthVisualization : MonoBehaviour
         }
     }
 }
+
+
+
 

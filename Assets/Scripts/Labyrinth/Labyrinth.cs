@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Labyrinth : MonoBehaviour
@@ -23,28 +20,38 @@ public class Labyrinth : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                if (i % 2 == 0 || j % 2 == 0)
+                if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1)
+                {
                     map[i, j] = 1;
+                }
                 else
-                    map[i, j] = 0;
+                {
+                    map[i, j] = Random.Range(0, 2);
+                }
             }
         }
 
+        map[0, 0] = 0;
         map[rows - 1, columns - 1] = 0;
 
-        map[0, 0] = 0;
+        map[0, 1] = 0;
+        map[1, 0] = 0;
     }
+
+
 
     void ShowMaze()
     {
         for (int i = 0; i < rows; i++)
         {
-            string fila = "";
+            string row = "";
+
             for (int j = 0; j < columns; j++)
             {
-                fila += map[i, j] == 1 ? "#" : " ";
+                row += map[i, j] == 1 ? "#" : " ";
             }
-            Debug.Log(fila);
+
+            Debug.Log(row);
         }
     }
 }

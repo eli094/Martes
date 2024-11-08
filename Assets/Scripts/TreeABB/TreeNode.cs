@@ -5,6 +5,7 @@ public class TreeNode
 
     public TreeNode left;
     public TreeNode right;
+
     public int height;
 
     public TreeNode(int value)
@@ -13,6 +14,7 @@ public class TreeNode
 
         left = null;
         right = null;
+
         height = 1;
     }
 }

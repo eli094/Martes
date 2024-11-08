@@ -1,22 +1,28 @@
-using System;
 using System.Collections.Generic;
 
 public class Node
 {
-    public int x, y; 
-
-    public List<Node> edges;
+    public int x, y;
 
     public Node(int x, int y)
     {
         this.x = x;
         this.y = y;
-
-        edges = new List<Node>();
     }
 
-    public void AddEdges(Node edge)
+    public override bool Equals(object obj)
     {
-        edges.Add(edge);
+        if (obj is Node other)
+        {
+            return x == other.x && y == other.y;
+        }
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return (x, y).GetHashCode();
     }
 }
+
+

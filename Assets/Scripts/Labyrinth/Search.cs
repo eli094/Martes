@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 
 public class Search
 {
-    public static List<Node> FindPath(Node beginning, Node end)
+    public static List<Node> FindPath(Node beginning, Node end, GrafoLabyrinth grafo)
     {
         Queue<Node> queue = new Queue<Node>();
-       
+
         Dictionary<Node, Node> parents = new Dictionary<Node, Node>();
 
         List<Node> path = new List<Node>();
@@ -30,17 +29,16 @@ public class Search
 
                     node = parents[node];
                 }
-
                 return path;
             }
 
-            foreach (Node edge in currentNode.edges)
+            foreach (Node neighbor in grafo.GetNeighbors(currentNode))
             {
-                if (!parents.ContainsKey(edge))
+                if (!parents.ContainsKey(neighbor))
                 {
-                    queue.Enqueue(edge);
+                    queue.Enqueue(neighbor);
 
-                    parents[edge] = currentNode;
+                    parents[neighbor] = currentNode;
                 }
             }
         }
@@ -48,4 +46,5 @@ public class Search
         return null;
     }
 }
+
 
