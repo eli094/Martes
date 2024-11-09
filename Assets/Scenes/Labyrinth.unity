@@ -197,11 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 467fd4431ba7ae14ca2aca51904608ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  labyrinth: {fileID: 489614806}
-  prefabPath: {fileID: 7432115220015921789, guid: 7e072d42c6fdbbb43957be96366cf9eb, type: 3}
+  prefabNode: {fileID: 7905851556872963237, guid: dbad27245ad6ab143bcd8d0b0ee7ea91, type: 3}
   prefabWall: {fileID: 3400528795276991635, guid: f88a515e02e59c941a8617191c581797, type: 3}
-  prefabEntrance: {fileID: 8806843411026192916, guid: b3a1d4ca6994b114f81d6c2343d46859, type: 3}
-  prefabExit: {fileID: 4523081946042764960, guid: 14e4df9c84c5dbd4e940145ae1d96227, type: 3}
+  prefabPath: {fileID: 7432115220015921789, guid: 7e072d42c6fdbbb43957be96366cf9eb, type: 3}
 --- !u!4 &706172050
 Transform:
   m_ObjectHideFlags: 0

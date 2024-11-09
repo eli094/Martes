@@ -1,72 +1,59 @@
-using System.Collections.Generic;
+//using System;
+//using System.Collections.Generic;
 
-public class GrafoLabyrinth
-{
-    private Dictionary<Node, List<Node>> adjacencyList;
+//public class GrafoLabyrinth
+//{
+//    private Dictionary<Node, List<Node>> adjacencyList;
 
-    public GrafoLabyrinth(int[,] map)
-    {
-        adjacencyList = new Dictionary<Node, List<Node>>();
+//    public GrafoLabyrinth()
+//    {
+//        adjacencyList = new Dictionary<Node, List<Node>>();
 
-        int rows = map.GetLength(0);
-        int columns = map.GetLength(1);
+//        GenerateMaze();
+//    }
 
-        Node[,] nodes = new Node[rows, columns];
+//    private void GenerateMaze()
+//    {
+//        int rows = 5;
+//        int cols = 5;
 
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                if (map[i, j] == 0)
-                {
-                    Node currentNode = new Node(i, j);
+//        Node[,] nodes = new Node[rows, cols];
 
-                    nodes[i, j] = currentNode;
+//        for (int i = 0; i < rows; i++)
+//        {
+//            for (int j = 0; j < cols; j++)
+//            {
+//                nodes[i, j] = new Node(i, j);
 
-                    adjacencyList[currentNode] = new List<Node>();
-                }
-            }
-        }
+//                adjacencyList[nodes[i, j]] = new List<Node>();
+//            }
+//        }
 
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                if (map[i, j] == 0)
-                {
-                    Node currentNode = nodes[i, j];
+//        for (int i = 0; i < rows; i++)
+//        {
+//            for (int j = 0; j < cols; j++)
+//            {
+//                Node currentNode = nodes[i, j];
 
-                    if (i > 0 && map[i - 1, j] == 0)
-                        adjacencyList[currentNode].Add(nodes[i - 1, j]);
+//                if (i > 0) adjacencyList[currentNode].Add(nodes[i - 1, j]);
+//                if (i < rows - 1) adjacencyList[currentNode].Add(nodes[i + 1, j]);
+//                if (j > 0) adjacencyList[currentNode].Add(nodes[i, j - 1]);
+//                if (j < cols - 1) adjacencyList[currentNode].Add(nodes[i, j + 1]);
+//            }
+//        }
+//    }
 
-                    if (i < rows - 1 && map[i + 1, j] == 0)
-                        adjacencyList[currentNode].Add(nodes[i + 1, j]);
+//    public List<Node> GetNodes()
+//    {
+//        return new List<Node>(adjacencyList.Keys);
+//    }
 
-                    if (j > 0 && map[i, j - 1] == 0)
-                        adjacencyList[currentNode].Add(nodes[i, j - 1]);
+//    public List<Node> GetNeighbors(Node node)
+//    {
+//        return adjacencyList.ContainsKey(node) ? adjacencyList[node] : new List<Node>();
+//    }
+//}
 
-                    if (j < columns - 1 && map[i, j + 1] == 0)
-                        adjacencyList[currentNode].Add(nodes[i, j + 1]);
-                }
-            }
-        }
-    }
-
-    public List<Node> GetNodes()
-    {
-        List<Node> nodes = new List<Node>(adjacencyList.Keys);
-        return nodes;
-    }
-
-    public List<Node> GetNeighbors(Node node)
-    {
-        if (adjacencyList.ContainsKey(node))
-        {
-            return adjacencyList[node];
-        }
-        return new List<Node>();
-    }
-}
 
 
 

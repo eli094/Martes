@@ -1,50 +1,51 @@
-using System;
-using System.Collections.Generic;
+//using System;
+//using System.Collections.Generic;
 
-public class Search
-{
-    public static List<Node> FindPath(Node beginning, Node end, GrafoLabyrinth grafo)
-    {
-        Queue<Node> queue = new Queue<Node>();
+//public class Search
+//{
+//    public static List<Node> FindPath(Node start, Node end, GrafoLabyrinth grafo)
+//    {
+//        Queue<Node> queue = new Queue<Node>();
 
-        Dictionary<Node, Node> parents = new Dictionary<Node, Node>();
+//        Dictionary<Node, Node> parents = new Dictionary<Node, Node>();
 
-        List<Node> path = new List<Node>();
+//        List<Node> path = new List<Node>();
 
-        queue.Enqueue(beginning);
+//        queue.Enqueue(start);
 
-        parents[beginning] = null;
+//        parents[start] = null;
 
-        while (queue.Count > 0)
-        {
-            Node currentNode = queue.Dequeue();
+//        while (queue.Count > 0)
+//        {
+//            Node currentNode = queue.Dequeue();
 
-            if (currentNode == end)
-            {
-                Node node = end;
+//            if (currentNode == end)
+//            {
+//                Node node = end;
 
-                while (node != null)
-                {
-                    path.Insert(0, node);
+//                while (node != null)
+//                {
+//                    path.Insert(0, node);
 
-                    node = parents[node];
-                }
-                return path;
-            }
+//                    node = parents[node];
+//                }
 
-            foreach (Node neighbor in grafo.GetNeighbors(currentNode))
-            {
-                if (!parents.ContainsKey(neighbor))
-                {
-                    queue.Enqueue(neighbor);
+//                return path;
+//            }
 
-                    parents[neighbor] = currentNode;
-                }
-            }
-        }
+//            foreach (Node neighbor in grafo.GetNeighbors(currentNode))
+//            {
+//                if (!parents.ContainsKey(neighbor))
+//                {
+//                    queue.Enqueue(neighbor);
 
-        return null;
-    }
-}
+//                    parents[neighbor] = currentNode;
+//                }
+//            }
+//        }
+
+//        return null;
+//    }
+//}
 
 

@@ -1,79 +1,68 @@
-using System.Collections.Generic;
-using UnityEngine;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class LabyrinthVisualization : MonoBehaviour
-{
-    public Labyrinth labyrinth;
+//public class LabyrinthVisualization : MonoBehaviour
+//{
+//    public GameObject prefabNode;  // Prefab para los nodos (esferas)
+//    public GameObject prefabWall;  // Prefab para las paredes (cubos)
+//    public GameObject prefabPath;  // Prefab para el camino (líneas)
 
-    public GameObject prefabPath;
-    public GameObject prefabWall;
-    public GameObject prefabEntrance;
-    public GameObject prefabExit;
+//    private GrafoLabyrinth grafo;
+//    private Node nodeEntrance;
+//    private Node nodeExit;
 
-    private GrafoLabyrinth grafo;
+//    void Start()
+//    {
+//        grafo = new GrafoLabyrinth();
+//        ShowLabyrinth();
 
-    private Node nodeEntrance;
-    private Node nodeExit;
+//        List<Node> nodes = grafo.GetNodes();
 
-    void Start()
-    {
-        labyrinth.CreateMaze();
+//        nodeEntrance = nodes[0];
+//        nodeExit = nodes[grafo.GetNodes().Count - 1];
 
-        grafo = new GrafoLabyrinth(labyrinth.map);
-        ShowLabyrinth();
+//        List<Node> path = Search.FindPath(nodeEntrance, nodeExit, grafo);
 
-        List<Node> nodes = grafo.GetNodes();
+//        if (path != null)
+//        {
+//            ShowPath(path);
+//        }
+//        else
+//        {
+//            Debug.Log("A path wasn't found.");
+//        }
+//    }
 
-        nodeEntrance = nodes.Find(n => n.x == 0 && n.y == 0);
-        nodeExit = nodes.Find(n => n.x == labyrinth.rows - 1 && n.y == labyrinth.columns - 1);
+//    void ShowLabyrinth()
+//    {
+//        foreach (Node node in grafo.GetNodes())
+//        {
+//            Vector3 position = new Vector3(node.y, -node.x, 0);
+//            Instantiate(prefabNode, position, Quaternion.identity); // Crear nodo
+//        }
 
-        List<Node> path = Search.FindPath(nodeEntrance, nodeExit, grafo);
+//        foreach (Node node in grafo.GetNodes())
+//        {
+//            foreach (Node neighbor in grafo.GetNeighbors(node))
+//            {
+//                Vector3 startPos = new Vector3(node.y, -node.x, 0);
+//                Vector3 endPos = new Vector3(neighbor.y, -neighbor.x, 0);
+//                Debug.DrawLine(startPos, endPos, Color.blue, 100f); // Dibujar arista entre nodos
+//            }
+//        }
+//    }
 
-        if (path != null)
-        {
-            ShowPath(path);
-        }
-        else
-        {
-            Debug.Log("A path wasn't found.");
-        }
-    }
+//    void ShowPath(List<Node> path)
+//    {
+//        for (int i = 0; i < path.Count - 1; i++)
+//        {
+//            Vector3 startPos = new Vector3(path[i].y, -path[i].x, 0);
+//            Vector3 endPos = new Vector3(path[i + 1].y, -path[i + 1].x, 0);
+//            Instantiate(prefabPath, (startPos + endPos) / 2, Quaternion.identity); // Crear líneas para el camino
+//        }
+//    }
+//}
 
-    void ShowLabyrinth()
-    {
-        for (int i = 0; i < labyrinth.rows; i++)
-        {
-            for (int j = 0; j < labyrinth.columns; j++)
-            {
-                Vector3 position = new Vector3(j, -i, 0);
-
-                if (labyrinth.map[i, j] == 1)
-                {
-                    Instantiate(prefabWall, position, Quaternion.identity);
-                }
-                else
-                {
-                    if (i == 0 && j == 0)
-                    {
-                        Instantiate(prefabEntrance, position, Quaternion.identity);
-                    }
-                    else if (i == labyrinth.rows - 1 && j == labyrinth.columns - 1)
-                    {
-                        Instantiate(prefabExit, position, Quaternion.identity);
-                    }
-                }
-            }
-        }
-    }
-
-    void ShowPath(List<Node> path)
-    {
-        foreach (Node node in path)
-        {
-            Instantiate(prefabPath, new Vector3(node.y, -node.x, 0), Quaternion.identity);
-        }
-    }
-}
 
 
 
