@@ -10,6 +10,8 @@ public class Labyrinth : MonoBehaviour
 
     public int[,] map;
 
+    float prefabSize = 1.0f;
+
     void Start()
     {
         CreateMaze();
@@ -17,7 +19,7 @@ public class Labyrinth : MonoBehaviour
 
     public void CreateMaze()
     {
-        map = new int[rows, columns];
+
 
         for (int i = 0; i < rows; i++)
         {
@@ -26,7 +28,7 @@ public class Labyrinth : MonoBehaviour
                 if (i % 2 == 0 || j % 2 == 0)
                     map[i, j] = 1;
                 else
-                    map[i, j] = 0;
+                    map[i, j] = 0; 
             }
         }
 

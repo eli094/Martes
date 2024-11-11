@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LabyrinthVisualization : MonoBehaviour
 {
-    public Labyrinth labyrinth;
+   /* public Labyrinth labyrinth;
 
     public GameObject prefabPath;
     public GameObject prefabWall;
@@ -61,6 +61,6 @@ public class LabyrinthVisualization : MonoBehaviour
         {
             Instantiate(prefabPath, new Vector3(node.y, -node.x, 0), Quaternion.identity);
         }
-    }
+    }*/
 }
 
