@@ -7,106 +7,81 @@ using UnityEngine.UI;
 
 public class DynamicSet<T> : MySet<T>
 {
-    private List<T> setList = new List<T>();
+    private List<T> elementos;
 
     public DynamicSet()
     {
-        setList = new List<T>();
+        elementos = new List<T>();
     }
 
-    public List<T> GetElements()
+    public void Add(T elemento)
     {
-        return new List<T>(setList); // Retorna una copia de la lista
+        if (!Contains(elemento))
+            elementos.Add(elemento);
     }
 
-    public override bool Add(T element)
+    public void Remove(T elemento)
     {
-        if (!setList.Contains(element))
+        if (Contains(elemento))
+            elementos.Remove(elemento);
+    }
+
+    public bool Contains(T elemento)
+    {
+        return elementos.Contains(elemento);
+    }
+
+    public string Show()
+    {
+        return string.Join(", ", elementos);
+    }
+
+    public int Cardinality()
+    {
+        return elementos.Count;
+    }
+
+    public bool IsEmpty()
+    {
+        return elementos.Count == 0;
+    }
+
+    public MySet<T> Union(MySet<T> otroConjunto)
+    {
+        MySet<T> union = new DynamicSet<T>();
+
+        foreach (var elem in elementos)
+            union.Add(elem);
+
+        foreach (var elem in ((DynamicSet<T>)otroConjunto).elementos)
+            union.Add(elem);
+
+        return union;
+    }
+
+    public MySet<T> Intersect(MySet<T> otroConjunto)
+    {
+        MySet<T> interseccion = new DynamicSet<T>();
+
+        foreach (var elem in elementos)
         {
-            setList.Add(element);
-            Debug.Log("Elemento agregado a la lista: " + element);
-        }
-        else
-        {
-            Debug.Log("El elemento ya existe en ela lista");
-        }
-        return true;
-    }
-
-    public override bool Remove(T element)
-    {
-        return setList.Remove(element);
-    }
-
-    public override bool Contains(T element)
-    {
-        return setList.Contains(element);
-    }
-
-    public override void Show()
-    {
-        Console.Write("{ ");
-        foreach (T element in setList)
-        {
-            Console.Write(element + " ");
-        }
-        Console.WriteLine("}");
-    }
-
-    public override int Cardinality()
-    {
-        return setList.Count;
-    }
-
-    public override bool IsEmpty()
-    {
-        return setList.Count == 0;
-    }
-
-    // Unión de conjuntos
-    public override MySet<T> Union(MySet<T> otherSet)
-    {
-        DynamicSet<T> resultSet = new DynamicSet<T>();
-        resultSet.setList.AddRange(this.setList); // Añadir todos los elementos actuales
-
-        foreach (T element in ((DynamicSet<T>)otherSet).setList)
-        {
-            resultSet.Add(element); // Añadir solo si no está presente
+            if (otroConjunto.Contains(elem))
+                interseccion.Add(elem);
         }
 
-        return resultSet;
+        return interseccion;
     }
 
-    // Intersección de conjuntos
-    public override MySet<T> Intersection(MySet<T> otherSet)
+    public MySet<T> Difference(MySet<T> otroConjunto)
     {
-        DynamicSet<T> resultSet = new DynamicSet<T>();
+        MySet<T> diferencia = new DynamicSet<T>();
 
-        foreach (T element in this.setList)
+        foreach (var elem in elementos)
         {
-            if (otherSet.Contains(element))
-            {
-                resultSet.Add(element);
-            }
+            if (!otroConjunto.Contains(elem))
+                diferencia.Add(elem);
         }
 
-        return resultSet;
+        return diferencia;
     }
-
-    public override MySet<T> Difference(MySet<T> otherSet)
-    {
-        DynamicSet<T> resultSet = new DynamicSet<T>();
-
-        foreach (T element in this.setList)
-        {
-            if (!otherSet.Contains(element))
-            {
-                resultSet.Add(element);
-            }
-        }
-
-        return resultSet;
-    }
-
-
 }
