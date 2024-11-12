@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4265866206894868095}
   - component: {fileID: 8630834506853564310}
   - component: {fileID: -5720311629570210770}
-  - component: {fileID: 637012283462863812}
   m_Layer: 0
   m_Name: PrefabPath
   m_TagString: Untagged
@@ -99,15 +98,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeType: 1
---- !u!114 &637012283462863812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432115220015921789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9dcb5e43e69e344b6cf89aa996a7dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

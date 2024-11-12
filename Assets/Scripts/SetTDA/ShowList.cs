@@ -11,6 +11,9 @@ public class ShowList : MonoBehaviour
 
     private DynamicSet<int> dynamicSet = new DynamicSet<int>();
 
+    // Mantener el historial de mensajes
+    private string messageHistory = "";
+
     void Start()
     {
         inputField.onEndEdit.AddListener(ExecuteCommand);
@@ -32,36 +35,36 @@ public class ShowList : MonoBehaviour
                 if (args.Length > 1 && int.TryParse(args[1], out value))
                 {
                     dynamicSet.Add(value);
-                    DisplayMessage("Elemento agregado: " + value);
+                    AppendMessage("Elemento agregado: " + value);
                 }
                 else
-                    DisplayMessage("Comando Add requiere un número válido.");
+                    AppendMessage("Comando Add requiere un número válido.");
                 break;
 
             case "remove":
                 if (args.Length > 1 && int.TryParse(args[1], out value))
                 {
                     dynamicSet.Remove(value);
-                    DisplayMessage("Elemento eliminado: " + value);
+                    AppendMessage("Elemento eliminado: " + value);
                 }
                 else
-                    DisplayMessage("Comando Remove requiere un número válido.");
+                    AppendMessage("Comando Remove requiere un número válido.");
                 break;
 
             case "show":
-                DisplayMessage("Conjunto: " + dynamicSet.Show());
+                AppendMessage("Conjunto: " + dynamicSet.Show());
                 break;
 
             case "cardinality":
-                DisplayMessage("Cardinalidad: " + dynamicSet.Cardinality());
+                AppendMessage("Cardinalidad: " + dynamicSet.Cardinality());
                 break;
 
             case "isempty":
-                DisplayMessage("¿Está vacío? " + (dynamicSet.IsEmpty() ? "Sí" : "No"));
+                AppendMessage("¿Está vacío? " + (dynamicSet.IsEmpty() ? "Sí" : "No"));
                 break;
 
             default:
-                DisplayMessage("Comando desconocido.");
+                AppendMessage("Comando desconocido.");
                 break;
         }
 
@@ -69,8 +72,16 @@ public class ShowList : MonoBehaviour
         inputField.ActivateInputField(); // Refocus para nuevo comando
     }
 
+    // Agregar los mensajes al historial
+    void AppendMessage(string message)
+    {
+        messageHistory += message + "\n";  // Acumular mensajes con salto de línea
+        DisplayMessage(messageHistory);    // Mostrar todo el historial en TextMeshPro
+    }
+
+    // Mostrar el historial completo de mensajes
     void DisplayMessage(string message)
     {
-        displayText.text = message;
+        displayText.text = message;  // Actualiza el TextMeshPro con el historial acumulado
     }
 }
