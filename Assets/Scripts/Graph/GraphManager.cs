@@ -37,7 +37,6 @@ public class GraphManager : MonoBehaviour
                 TravelToDestination(hit);
         }
     }
-
     private void NodeConnections()
     {
         graph.AddConnections(graph.nodeList[0], graph.nodeList[1], 5);
@@ -50,7 +49,6 @@ public class GraphManager : MonoBehaviour
         graph.AddConnections(graph.nodeList[5], graph.nodeList[6], 8);
         graph.AddConnections(graph.nodeList[4], graph.nodeList[6], 3);
     }
-
     private RaycastHit2D NodeIdentifier()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -58,7 +56,6 @@ public class GraphManager : MonoBehaviour
 
         return hit;
     }
-
     private void TravelToDestination(RaycastHit2D ray)
     {
         GameObject node = ray.collider.gameObject;
