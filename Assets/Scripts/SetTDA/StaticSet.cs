@@ -5,86 +5,104 @@ using UnityEngine;
 
 public class StaticSet<T> : MySet<T>
 {
-    private T[] elements;
-    private int count;
+    private T[] elementos;
+    private int tamaño;
+    private int capacidad;
 
-    public StaticSet(int capacity)
+    public StaticSet(int capacidad = 10)
     {
-        elements = new T[capacity];
-        count = 0;
+        this.capacidad = capacidad;
+        elementos = new T[capacidad];
+        tamaño = 0;
     }
 
-    public override bool Add(T element)
+    public void Add(T elemento)
     {
-        if (count >= elements.Length || Contains(element)) return false;
+        if (Contains(elemento)) return;
 
-        elements[count] = element;
-        count++;
-        Debug.Log("Elemento agregado al conjunto estático: " + element);
-        return true;
-    }
-
-    public override bool Remove(T element)
-    {
-        for (int i = 0; i < count; i++)
+        if (tamaño < capacidad)
         {
-            if (elements[i].Equals(element))
+            elementos[tamaño] = elemento;
+            tamaño++;
+        }
+        else
+        {
+            Console.WriteLine("Capacidad máxima alcanzada");
+        }
+    }
+
+    public void Remove(T elemento)
+    {
+        int index = Array.IndexOf(elementos, elemento);
+
+        if (index != -1)
+        {
+            for (int i = index; i < tamaño - 1; i++)
             {
-                elements[i] = elements[count - 1];
-                elements[count - 1] = default;
-                count--;
-                return true;
+                elementos[i] = elementos[i + 1];
             }
+
+            elementos[tamaño - 1] = default(T);
+            tamaño--;
         }
-        return false;
     }
 
-    public override bool Contains(T element)
+    public bool Contains(T elemento)
     {
-        for (int i = 0; i < count; i++)
+        return Array.IndexOf(elementos, elemento) != -1;
+    }
+
+    public string Show()
+    {
+        return string.Join(", ", elementos);
+    }
+
+    public int Cardinality()
+    {
+        return tamaño;
+    }
+
+    public bool IsEmpty()
+    {
+        return tamaño == 0;
+    }
+
+    public MySet<T> Union(MySet<T> otroConjunto)
+    {
+        MySet<T> union = new StaticSet<T>(this.capacidad + otroConjunto.Cardinality());
+
+        foreach (var elem in elementos)
+            union.Add(elem);
+
+        foreach (var elem in ((StaticSet<T>)otroConjunto).elementos)
+            union.Add(elem);
+
+        return union;
+    }
+
+    public MySet<T> Intersect(MySet<T> otroConjunto)
+    {
+        MySet<T> interseccion = new StaticSet<T>();
+
+        foreach (var elem in elementos)
         {
-            if (elements[i].Equals(element)) return true;
+            if (otroConjunto.Contains(elem))
+                interseccion.Add(elem);
         }
-        return false;
+
+        return interseccion;
     }
 
-    public override void Show()
+    public MySet<T> Difference(MySet<T> otroConjunto)
     {
-        Console.Write("{ ");
-        for (int i = 0; i < count; i++)
+        MySet<T> diferencia = new StaticSet<T>();
+
+        foreach (var elem in elementos)
         {
-            Console.Write(elements[i] + " ");
+            if (!otroConjunto.Contains(elem))
+                diferencia.Add(elem);
         }
-        Console.WriteLine("}");
+
+        return diferencia;
     }
-
-    public override int Cardinality()
-    {
-        return count;
-    }
-
-    public override bool IsEmpty()
-    {
-        return count == 0;
-    }
-
-    public override MySet<T> Union(MySet<T> otherSet)
-    {
-        // Implementación similar a `DynamicSet`
-        throw new NotImplementedException();
-    }
-
-    public override MySet<T> Intersection(MySet<T> otherSet)
-    {
-        // Implementación similar a `DynamicSet`
-        throw new NotImplementedException();
-    }
-
-    public override MySet<T> Difference(MySet<T> otherSet)
-    {
-        // Implementación similar a `DynamicSet`
-        throw new NotImplementedException();
-    }
-
-
 }
