@@ -14,6 +14,11 @@ public class DynamicSet<T> : MySet<T>
         setList = new List<T>();
     }
 
+    public List<T> GetElements()
+    {
+        return new List<T>(setList); // Retorna una copia de la lista
+    }
+
     public override bool Add(T element)
     {
         if (!setList.Contains(element))

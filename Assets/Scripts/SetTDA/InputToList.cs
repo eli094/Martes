@@ -34,6 +34,10 @@ public class InputToList : MonoBehaviour
     void UpdateListDisplay()
     {
         showList.text = "Elementos en la lista:\n";
+        foreach (var item in dynamicSet.GetElements())
+        {
+            showList.text += item + "\n";
+        }
     }
 }
 
