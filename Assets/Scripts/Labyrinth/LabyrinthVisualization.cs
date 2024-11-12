@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LabyrinthVisualization : MonoBehaviour
 {
-   /* public Labyrinth labyrinth;
+    /*public Labyrinth labyrinth;
 
     public GameObject prefabPath;
     public GameObject prefabWall;
@@ -14,6 +14,7 @@ public class LabyrinthVisualization : MonoBehaviour
 
     private Node nodeEntrance;
     private Node nodeExit;
+    private Node EndNode;
 
     void Start()
     {
