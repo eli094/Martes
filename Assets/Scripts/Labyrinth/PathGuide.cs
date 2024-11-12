@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class PathGuide : MonoBehaviour
 {
-    private LineRenderer lineRenderer;
+    private LineRenderer lineRenderer; //arista
     public Node currentNode; // Nodo actual asociado al círculo negro
-    public Node endNode;     // Nodo de salida final
+    public Node withoutEndNode;     // Nodo de salida final
+    public Node entranceNode;
+    public Node exitNode;
 
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2; // Configura el LineRenderer para tener dos puntos
-        lineRenderer.enabled = false;   // Oculta la línea inicialmente
+        lineRenderer.enabled = true;   // Oculta la línea inicialmente
     }
 
     void OnMouseDown() // Detecta cuando se hace clic en el objeto
     {
-        List<Node> path = Search.FindPath(currentNode, endNode); // Encuentra el camino desde el nodo actual hasta el final
+        List<Node> path = Search.FindPath(currentNode, exitNode); // Encuentra el camino desde el nodo actual hasta el final
 
         if (path != null && path.Count > 1)
         {

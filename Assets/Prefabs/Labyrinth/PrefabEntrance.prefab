@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 926295731848261975}
   - component: {fileID: 5642559452159509050}
+  - component: {fileID: -6202648794970699206}
+  - component: {fileID: -4464501806648002866}
   m_Layer: 0
   m_Name: PrefabEntrance
   m_TagString: Untagged
@@ -84,3 +86,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6202648794970699206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806843411026192916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e079fa7a51082f34aae5e52952e1d50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeType: 0
+--- !u!114 &-4464501806648002866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8806843411026192916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9dcb5e43e69e344b6cf89aa996a7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

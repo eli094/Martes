@@ -5,9 +5,12 @@ using UnityEngine;
 
 public enum NodeType
 {
+    Entrance,
     Path, // Círculo negro (camino)
-    End,  // Nodo de fin de camino
-    Fork  // Nodo de bifurcación
+    NoEnd, // Nodo de fin de camino
+    Exit,  
+    Divide  // Nodo de bifurcación
+
 }
 
 public class NodeController : MonoBehaviour
@@ -39,13 +42,20 @@ public class NodeController : MonoBehaviour
                     ShowPathLine(nextNode);
                     break;
 
-                case NodeType.End:
+                case NodeType.NoEnd:
                     ShowReturnPath(path);
                     break;
 
-                case NodeType.Fork:
+                case NodeType.Divide:
                     ShowForkOptions(path);
                     break;
+                case NodeType.Exit:
+                    ShowForkOptions(path);
+                    break;
+                case NodeType.Entrance:
+                    ShowForkOptions(path);
+                    break;
+
             }
         }
     }

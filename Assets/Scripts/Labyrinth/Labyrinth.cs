@@ -14,28 +14,10 @@ public class Labyrinth : MonoBehaviour
 
     void Start()
     {
-        //CreateMaze();
+        
     }
 
-    /*public void CreateMaze()
-    {
-
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                if (i % 2 == 0 || j % 2 == 0)
-                    map[i, j] = 1;
-                else
-                    map[i, j] = 0; 
-            }
-        }
-
-        map[rows - 1, columns - 1] = 0;
-
-        map[0, 0] = 0;
-    }*/
+    
 
     void ShowMaze()
     {
