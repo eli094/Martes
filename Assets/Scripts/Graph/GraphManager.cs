@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class GraphManager : MonoBehaviour
@@ -46,6 +47,11 @@ public class GraphManager : MonoBehaviour
             RaycastHit2D hit = NodeIdentifier();
             if (hit.collider != null && hit.collider.gameObject.CompareTag("Node"))
                 TravelToDestination(hit);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            currentDestination = graph.nodeList[0];
+            traveler.transform.position = new Vector2(verticesPrefab[0].transform.position.x, verticesPrefab[0].transform.position.y);
         }
     }
     private void NodeConnections()
