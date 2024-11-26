@@ -4,11 +4,13 @@ public class Graph<T>
 {
     public List<T> nodeList;
     public Dictionary<T, List<(T, int)>> adjacencyList;
+
     public Graph()
     {
         nodeList = new List<T>();
         adjacencyList = new Dictionary<T, List<(T, int)>>();
     }
+
     public void AddNodes(T node)
     {
         if (ReturnNodes(node) == null)
@@ -17,6 +19,7 @@ public class Graph<T>
             adjacencyList.Add(node, new List<(T, int)>());
         }
     }
+
     public T ReturnNodes(T node)
     {
         foreach (var nodes in nodeList)
@@ -26,11 +29,13 @@ public class Graph<T>
         }
         return default;
     }
+
     public void AddConnections(T start, T destination, int travelCost)
     {
         if (!ConnectionsExist(start, destination))
             adjacencyList[ReturnNodes(start)].Add((ReturnNodes(destination), travelCost));
     }
+
     public bool ConnectionsExist(T start, T destination)
     {
         if (adjacencyList.ContainsKey(start))
@@ -41,6 +46,7 @@ public class Graph<T>
         }
         return false;
     }
+
     public int ReturnTravelCost(T start, T destination)
     {
         if (ConnectionsExist(start, destination))
